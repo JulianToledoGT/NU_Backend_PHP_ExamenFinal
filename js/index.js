@@ -10,10 +10,10 @@ $.fn.scrollEnd = function(callback, timeout) {
     $this.data('scrollTimeout', setTimeout(callback,timeout));
   });
 };
+
 /*
   Función que inicializa el elemento Slider
 */
-
 function inicializarSlider(){
   $("#rangoPrecio").ionRangeSlider({
     type: "double",
@@ -25,6 +25,7 @@ function inicializarSlider(){
     prefix: "$"
   });
 }
+
 /*
   Función que reproduce el video de fondo al hacer scroll, y deteiene la reproducción al detener el scroll
 */
@@ -48,5 +49,31 @@ function playVideoOnScroll(){
     }, 10)
 }
 
+//Enviamos a solicitar el listado de ciudades y tipos y llenamos los controles correspondientes
+function loadObjects(attName, objID){
+  $.ajax(
+    {
+      url: './php/private_project_functions.php',
+      type: 'POST',
+      data: {param: attName}
+    }
+  ).done(function(data){
+    myData = JSON.parse(data);
+    combo = $(objID)
+    //combo.empty();
+    Object.entries(myData).forEach(([key, value]) => {
+      combo.append(`<option value="${value}">${value}</option>`);
+      console.log(`<option value="${value}">${value}</option>`);
+    });
+    $(objID).formSelect();
+  });
+}
+
+loadObjects("Ciudad", "#selectCiudad");
+loadObjects("Tipo", "#selectTipo");
 inicializarSlider();
 playVideoOnScroll();
+
+$(document).ready(function(){
+  $('select').formSelect();
+});

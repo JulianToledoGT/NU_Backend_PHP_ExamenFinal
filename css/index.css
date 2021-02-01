@@ -1,15 +1,27 @@
-video#vidFondo {
-    position: fixed;
-    min-width: 100%;
-    min-height: 100%;
-    width: 100%;
-    height: auto;
-    z-index: -100;
-    left: 0;
-    top: 0;
-    background-size: cover;
-
+img#imgFondo {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  z-index: -100;
+  left: 0;
+  top: 0;
+  background-size: cover;
 }
+
+/*
+video#vidFondo {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  z-index: -100;
+  left: 0;
+  top: 0;
+  background-size: cover;
+} */
 
 .contenedor{
   background-color: rgba(242, 242, 242, 0.5);

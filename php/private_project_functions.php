@@ -1,8 +1,7 @@
 <?php
-//Al finalizar su funcionalidad debe vincularse al proceso que recibirá las peticiones o agregarse aquí esa funcionalidad
-    $json = file_get_contents("data-1.json");
+    $json = file_get_contents("../data/data-1.json");
     $arr1 = json_decode($json, true);
-    $arr2 = json_decode($json);
+    //$arr2 = json_decode($json);
 
     function unique_array_data($array, $key) {
         $i = 0;
@@ -19,7 +18,11 @@
         return $distinct;
     };
 
+    $param = $_POST['param'];
     $ciudades = json_encode(unique_array_data($arr1, 'Ciudad'));
+    echo $ciudades
+
+/*
     print_r($ciudades);
     echo "<br>";
     $tipos = json_encode(unique_array_data($arr1, 'Tipo'));
@@ -44,4 +47,5 @@
                 );
 
     echo $filtrado;
+*/
 ?>
