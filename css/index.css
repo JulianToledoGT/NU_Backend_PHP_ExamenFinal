@@ -1,3 +1,4 @@
+/*Se crea "img#imgFondo" en sustitución de "video#vidFondo" que se comenta dado que los archivos de base no inluyen el video y me indicaron que debía sustituirlo por una imagen.*/
 img#imgFondo {
   position: fixed;
   min-width: 100%;
@@ -9,7 +10,6 @@ img#imgFondo {
   top: 0;
   background-size: cover;
 }
-
 /*
 video#vidFondo {
   position: fixed;
