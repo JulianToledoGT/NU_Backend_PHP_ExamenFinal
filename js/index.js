@@ -27,6 +27,8 @@ function inicializarSlider(){
     from: 200,
     to: 80000,
     prefix: "$",
+    //Establezco que el incremento se haré de 100 en 100.
+    step: 100,
     //Registro los valores del control para poder enviarlos posteriormente
     onFinish: function (data) {
       priceRangeStart = data.from;
@@ -80,10 +82,12 @@ function loadObjects(attName, objID){
 }
 
 //Enviamos a solicitar los resultados de la búsqueda
-$('#formulario').submit(function(event){
-  var ciudad = $("#selectCiudad").val();
-  var tipo = $("#selectTipo").val();
-  event.preventDefault();
+function loadRecords(event){
+  if(event !== null){
+    event.preventDefault();
+  };
+  let ciudad = $("#selectCiudad").val();
+  let tipo = $("#selectTipo").val();
   $.ajax(
     {
       url: './php/get_data.php',
@@ -118,9 +122,33 @@ $('#formulario').submit(function(event){
       });
       content = '<div class="card record"><img src="img/home.jpg" style="width : 40%; float: left"><div class="card-content"><p>'+content+'</p></div><div class="card-action"><a href="#">VER MAS</a></div></div>'
       contenedor.append(content);
-    });
+    })
   });
-})
+}
+
+//Asocio el evento al botón de "Mostrar Todos"
+$("#mostrarTodos").on("click", mostrarTodos);
+
+//Función para mostrar todos los registros
+function mostrarTodos(){
+  $("#selectCiudad").val("");
+  $("#selectTipo").val("");
+
+  $('#selectCiudad').formSelect();
+  $('#selectTipo').formSelect();
+
+  $("#rangoPrecio").data("ionRangeSlider").update({
+    from: 200,
+    to: 80000
+  });
+  priceRangeStart = 200;
+  priceRangeEnd = 80000;
+
+  loadRecords();
+};
+
+//Cargamos registros al enviar los datos del formulario.
+$('#formulario').submit(loadRecords);
 
 loadObjects("Ciudad", "#selectCiudad");
 loadObjects("Tipo", "#selectTipo");
