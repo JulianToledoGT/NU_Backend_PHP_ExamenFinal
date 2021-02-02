@@ -83,7 +83,7 @@ function loadObjects(attName, objID){
 
 //Enviamos a solicitar los resultados de la búsqueda
 function loadRecords(event){
-  if(event !== null){
+  if(event != null){
     event.preventDefault();
   };
   let ciudad = $("#selectCiudad").val();
